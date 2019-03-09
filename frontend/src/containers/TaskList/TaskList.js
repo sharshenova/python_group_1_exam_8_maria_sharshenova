@@ -57,7 +57,9 @@ class TaskList extends Component {
         console.log(this.state);
 
         return <Fragment>
-            <p><NavLink to='/tasks/add'>Добавить задачу</NavLink></p>
+            <div className='mt-5'>
+                <p><NavLink className='add-task-link' to='/tasks/add'>ДОБАВИТЬ ЗАДАЧУ</NavLink></p>
+            </div>
             <div className='row'>
                 <div className='col-4 task-status-field'>
                     <h3 className='task-status-name'>Очередь</h3>

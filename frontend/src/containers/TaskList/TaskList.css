@@ -11,3 +11,11 @@
 .task-status-name {
     color: darkcyan;
 }
+
+.add-task-link {
+    color: darkcyan;
+}
+
+.add-task-link:hover {
+    color: #282c34;
+}
