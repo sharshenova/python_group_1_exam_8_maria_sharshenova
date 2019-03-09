@@ -8,6 +8,7 @@ from api_v1.serializers import TaskSerializer
 class NoAuthModelViewSet(viewsets.ModelViewSet):
     authentication_classes = []
 
+
 class TaskViewSet(NoAuthModelViewSet):
     queryset = Task.objects.all().order_by('status', '-due_date')
     serializer_class = TaskSerializer

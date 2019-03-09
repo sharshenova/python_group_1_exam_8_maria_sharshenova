@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='api_v1:task-details')
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:task-detail')
 
     class Meta:
         model = Task
