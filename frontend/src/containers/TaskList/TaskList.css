@@ -1,25 +1,13 @@
-.task-description {
-    text-overflow: ellipsis;
-}
-
-.task-container {
-    border: 1px solid black;
-    padding: 20px;
-    background: #61dafb/* Цвет фона */
-}
-
-.task-text-container {
-    padding-top: 5px;
-    white-space: nowrap; /* Запрещаем перенос строк */
-    overflow: hidden; /* Обрезаем все, что не помещается в область */
-    text-overflow: ellipsis; /* Добавляем многоточие */
-}
 
 .task-status-field {
-    border-right: 1px solid black;
+    border-right: 1px solid darkcyan;
     padding: 30px;
 }
 
 .task-status-field:last-child {
     border: none;
+}
+
+.task-status-name {
+    color: darkcyan;
 }

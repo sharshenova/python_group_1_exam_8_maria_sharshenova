@@ -5,7 +5,6 @@ import './TaskList.css';
 import TaskCard from "../../components/UI/TaskCard/TaskCard";
 
 
-
 // компонент для показа списка задач клиенту
 // задачи запрашиваются из API в момент показа компонента на странце (mount)
 const TASKS_URL = 'http://localhost:8000/api/v1/tasks';
@@ -36,13 +35,13 @@ class TaskList extends Component {
                 });
                 console.log(backlog, 'BACKLOG');
 
-                let in_progress = [...this.state.in_progress];
+                let in_progress = [];
                 in_progress = stateTasks.filter(function (task) {
                     return task.status === 'in_progress';
                 });
                 console.log(in_progress, 'IN PROGRESS');
 
-                let done = [...this.state.done];
+                let done = [];
                 done = stateTasks.filter(function (task) {
                     return task.status === 'done';
                 });
@@ -61,19 +60,19 @@ class TaskList extends Component {
             <p><NavLink to='/tasks/add'>Добавить задачу</NavLink></p>
             <div className='row'>
                 <div className='col-4 task-status-field'>
-                    <h3>Очередь</h3>
+                    <h3 className='task-status-name'>Очередь</h3>
                     {this.state.backlog.map(task => {
                         return <TaskCard task={task}/>
                     })}
                 </div>
                 <div className='col-4 task-status-field'>
-                    <h3>В работе</h3>
+                    <h3 className='task-status-name'>В работе</h3>
                     {this.state.in_progress.map(task => {
                         return <TaskCard task={task}/>
                     })}
                 </div>
                 <div className='col-4 task-status-field'>
-                    <h3>Сделано</h3>
+                    <h3 className='task-status-name'>Сделано</h3>
                     {this.state.done.map(task => {
                         return <TaskCard task={task}/>
                     })}

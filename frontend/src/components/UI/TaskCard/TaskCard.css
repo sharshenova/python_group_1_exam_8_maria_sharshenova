@@ -1,0 +1,17 @@
+.task-description {
+    text-overflow: ellipsis;
+}
+
+.task-container {
+    border: 1px solid darkcyan;
+    padding: 20px;
+    background: #61dafb/* Цвет фона */
+}
+
+.task-text-container {
+    padding-top: 5px;
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
