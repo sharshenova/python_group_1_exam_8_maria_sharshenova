@@ -5,7 +5,7 @@
 .task-container {
     border: 1px solid black;
     padding: 20px;
-    background: #fc0; /* Цвет фона */
+    background: #61dafb/* Цвет фона */
 }
 
 .task-text-container {
@@ -13,4 +13,13 @@
     white-space: nowrap; /* Запрещаем перенос строк */
     overflow: hidden; /* Обрезаем все, что не помещается в область */
     text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.task-status-field {
+    border-right: 1px solid black;
+    padding: 30px;
+}
+
+.task-status-field:last-child {
+    border: none;
 }

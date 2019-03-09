@@ -2,6 +2,8 @@ import React, {Fragment, Component} from 'react'
 import {NavLink} from "react-router-dom";
 import axios from 'axios';
 import './TaskList.css';
+import TaskCard from "../../components/UI/TaskCard/TaskCard";
+
 
 
 // компонент для показа списка задач клиенту
@@ -18,47 +20,64 @@ class TaskList extends Component {
 
     componentDidMount() {
         axios.get(TASKS_URL)
-            .then(response => {console.log(response.data); return response.data;})
-            .then(tasks => this.setState({tasks}))
+            .then(response => {
+                console.log(response.data);
+                return response.data;
+            })
+            .then(tasks => {
+                console.log(tasks, 'RESPONSE');
+                let stateTasks = tasks;
+                console.log(tasks, 'TASKS');
+
+                let backlog = [];
+                backlog = stateTasks.filter((task) => {
+                    console.log(task, 'ONE TASK');
+                    return task.status === 'backlog';
+                });
+                console.log(backlog, 'BACKLOG');
+
+                let in_progress = [...this.state.in_progress];
+                in_progress = stateTasks.filter(function (task) {
+                    return task.status === 'in_progress';
+                });
+                console.log(in_progress, 'IN PROGRESS');
+
+                let done = [...this.state.done];
+                done = stateTasks.filter(function (task) {
+                    return task.status === 'done';
+                });
+                console.log(done, 'DONE');
+                this.setState({...this.state, tasks, backlog, in_progress, done})
+            })
+            // .then()
             .catch(error => console.log(error));
-
-        let tasks = [...this.state.tasks];
-
-        let backlog = [...this.state.backlog];
-        backlog = tasks.filter(function(task) {
-            return task.status === 'backlog';
-        });
-
-        let in_progress = [...this.state.in_progress];
-        in_progress = tasks.filter(function(task) {
-            return task.status === 'in_progress';
-        });
-
-        let done = [...this.state.done];
-        done = tasks.filter(function(task) {
-            return task.status === 'done';
-        });
-
-        this.setState({...this.state, backlog, in_progress, done});
     }
 
 
     render() {
+        console.log(this.state);
 
         return <Fragment>
             <p><NavLink to='/tasks/add'>Добавить задачу</NavLink></p>
             <div className='row'>
-                {this.state.backlog.map(task => {
-                    return <div className='col-xs-12 col-sm-12 col-m-4 col-lg-4 mt-4' key={task.id}>
-                        <div className='task-container'>
-                            <h4>{task.summary}</h4>
-                            <div className='task-text-container'>
-                                <p className='task-description'>{task.description}</p>
-                            </div>
-                            <p>{task.due_date}</p>
-                        </div>
-                    </div>
-                })}
+                <div className='col-4 task-status-field'>
+                    <h3>Очередь</h3>
+                    {this.state.backlog.map(task => {
+                        return <TaskCard task={task}/>
+                    })}
+                </div>
+                <div className='col-4 task-status-field'>
+                    <h3>В работе</h3>
+                    {this.state.in_progress.map(task => {
+                        return <TaskCard task={task}/>
+                    })}
+                </div>
+                <div className='col-4 task-status-field'>
+                    <h3>Сделано</h3>
+                    {this.state.done.map(task => {
+                        return <TaskCard task={task}/>
+                    })}
+                </div>
             </div>
         </Fragment>
     }
