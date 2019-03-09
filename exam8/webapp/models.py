@@ -3,7 +3,7 @@ from django.db import models
 
 STATUS_CHOICES = (
         ("backlog", 'Очередь'),
-        ("in progress", 'В работе'),
+        ("in_progress", 'В работе'),
         ("done", 'Сделано')
     )
 
